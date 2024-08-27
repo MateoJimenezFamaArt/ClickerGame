@@ -2,8 +2,6 @@ class_name PrototypeGenerator
 extends Control
 
 
-@export var label : Label
-
 @export var GeneratorButton : Button
 
 @export var timer : Timer
@@ -13,23 +11,16 @@ extends Control
 ## View reference
 @export var view : UserInterface.Views
 
-var Asset : int
 
 func _ready() -> void:
-	update_label_text()
 	
 	visible = false
 	
 	user_interface.navigation_requested.connect(_on_navigation_request)
 
 
-func create_asset(amountCreated : int) -> void:
-	Asset += amountCreated
-	update_label_text()
-
-## Update the label of the amount of assets
-func update_label_text() -> void:
-	label.text = "Asset : %s" %Asset
+func create_asset() -> void:
+	HandlerAssets.ref.create_asset(2)
 
 
 ## GENERATOR SECTION OF CODE
@@ -43,7 +34,7 @@ func _on_auto_gen_pressed():
 
 
 func _on_timer_timeout():
-	create_asset(2)
+	create_asset()
 
 ## ///////////////////////////////////////////////////////////////////////////
 

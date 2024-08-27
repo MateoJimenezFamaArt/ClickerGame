@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://54jipejvn1ge"]
+[gd_scene load_steps=6 format=3 uid="uid://54jipejvn1ge"]
 
 [ext_resource type="Script" path="res://Scripts/user_interface.gd" id="1_j1qvm"]
-[ext_resource type="PackedScene" uid="uid://dadwvynkvamgb" path="res://Scenes/Prototypes/Prototype_generator.tscn" id="2_byiyq"]
-[ext_resource type="PackedScene" uid="uid://dj5elyacdmvym" path="res://Scenes/Prototypes/Prototype_Clicker.tscn" id="3_r0tx7"]
+[ext_resource type="Script" path="res://Scripts/Asset_Lable.gd" id="2_u7sdc"]
+[ext_resource type="PackedScene" uid="uid://dadwvynkvamgb" path="res://Scenes/Prototypes/generator/Prototype_generator.tscn" id="3_dyh0c"]
+[ext_resource type="PackedScene" uid="uid://dj5elyacdmvym" path="res://Scenes/Prototypes/clicker/Prototype_Clicker.tscn" id="4_0bpeg"]
+[ext_resource type="PackedScene" uid="uid://uvmnlu8sbyod" path="res://Scenes/Prototypes/upgrades/Prototype_upgrades.tscn" id="5_xgqdk"]
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -60,6 +62,10 @@ text = "Prototype Generator"
 layout_mode = 2
 text = "Prototype Clicker"
 
+[node name="ProtypeUpgradesLink" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Prototype Upgrades"
+
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
@@ -87,9 +93,10 @@ theme_override_constants/margin_bottom = 16
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/Resources/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/LeftPanel/VBoxContainer/Resources/MarginContainer/VBoxContainer"]
+[node name="AssetLabel" type="Label" parent="HBoxContainer/LeftPanel/VBoxContainer/Resources/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Assets : 0"
+script = ExtResource("2_u7sdc")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -103,16 +110,23 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PrototypeGenerator" parent="HBoxContainer/MainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("2_byiyq")]
+[node name="PrototypeGenerator" parent="HBoxContainer/MainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("3_dyh0c")]
 visible = false
 layout_mode = 1
 user_interface = NodePath("../../..")
 
-[node name="Prototype_Clicker" parent="HBoxContainer/MainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("3_r0tx7")]
+[node name="Prototype_Clicker" parent="HBoxContainer/MainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("4_0bpeg")]
 visible = false
 layout_mode = 1
 user_interface = NodePath("../../..")
 view = 1
 
+[node name="PrototypeUpgrades" parent="HBoxContainer/MainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("5_xgqdk")]
+visible = false
+layout_mode = 1
+user_interface = NodePath("../../..")
+view = 2
+
 [connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/PrototypeGeneratorLink" to="." method="_on_prototype_generator_link_pressed"]
 [connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/PrototypeClickerLink" to="." method="_on_prototype_clicker_link_pressed"]
+[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/ProtypeUpgradesLink" to="." method="_on_protype_upgrades_link_pressed"]
