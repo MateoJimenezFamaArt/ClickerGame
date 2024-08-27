@@ -1,0 +1,118 @@
+[gd_scene load_steps=4 format=3 uid="uid://54jipejvn1ge"]
+
+[ext_resource type="Script" path="res://Scripts/user_interface.gd" id="1_j1qvm"]
+[ext_resource type="PackedScene" uid="uid://dadwvynkvamgb" path="res://Scenes/Prototypes/Prototype_generator.tscn" id="2_byiyq"]
+[ext_resource type="PackedScene" uid="uid://dj5elyacdmvym" path="res://Scenes/Prototypes/Prototype_Clicker.tscn" id="3_r0tx7"]
+
+[node name="UserInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j1qvm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftPanel" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Navigator" type="Control" parent="HBoxContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer"]
+layout_mode = 2
+
+[node name="PrototypeGeneratorLink" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Prototype Generator"
+
+[node name="PrototypeClickerLink" type="LinkButton" parent="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Prototype Clicker"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/LeftPanel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Resources" type="Control" parent="HBoxContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/Resources"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 19
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/Resources/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/LeftPanel/VBoxContainer/Resources/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Assets : 0"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MainView" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PrototypeGenerator" parent="HBoxContainer/MainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("2_byiyq")]
+visible = false
+layout_mode = 1
+user_interface = NodePath("../../..")
+
+[node name="Prototype_Clicker" parent="HBoxContainer/MainView" node_paths=PackedStringArray("user_interface") instance=ExtResource("3_r0tx7")]
+visible = false
+layout_mode = 1
+user_interface = NodePath("../../..")
+view = 1
+
+[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/PrototypeGeneratorLink" to="." method="_on_prototype_generator_link_pressed"]
+[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/Navigator/MarginContainer/VBoxContainer/PrototypeClickerLink" to="." method="_on_prototype_clicker_link_pressed"]

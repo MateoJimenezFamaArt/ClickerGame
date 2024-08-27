@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dj5elyacdmvym"]
 
-[ext_resource type="Script" path="res://Scenes/Prototypes/Prototype_Clicker.gd" id="1_bbg7o"]
+[ext_resource type="Script" path="res://Scripts/Prototype_Clicker.gd" id="1_bbg7o"]
 
 [node name="Prototype_Clicker" type="Control" node_paths=PackedStringArray("AssetCount")]
 layout_mode = 3
